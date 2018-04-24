@@ -1,0 +1,147 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway|Spectral+SC');
+
+body {
+	position: relative;
+	min-height: 670px;
+	height: 100vh;
+	min-width: 1025px;
+	margin: 0 auto;
+	font-family:"Raleway", sans-serif;
+}
+
+input {	
+	width: 169px;
+	height: 15px;	
+	padding: 1px 0;
+	border: 2px inset #EEEEEE;
+}
+
+.graphics {
+	position: absolute;
+	top: 30px;
+	
+	margin-right: auto;
+	margin-left: auto;
+	left: 0;
+	right: 0;	
+	/*
+	left: 50%;
+    margin-right: -50%;
+	transform: translate(-50%);
+	*/	
+	min-height: 300px;
+	width: 950px;
+
+}
+
+.Graphics {
+	display: inline-block;
+	width: 443px;	
+	min-height: 350px;
+
+}
+
+/*.Graphics img {
+	border:1px solid #000000;
+}*/
+
+#Graphics_left {
+	margin-left: 30px;
+	
+}
+
+#Graphics_right {
+	margin-right: 30px;	
+	float: right;
+}
+
+.graphics_field {
+	margin: 28px 0 0 28px;	
+}
+
+.axis_Y {
+	position: absolute;
+	display: inline-block;
+
+}
+
+.axis_X {	
+	float: right;
+}
+
+.legend {
+	position: absolute;	
+	bottom: 4em;
+	padding-left: 20px;
+}
+
+.legend p {
+	min-height: 2em;
+}
+
+.legend span {
+	font-weight: 600;
+}
+
+.click {
+	position: absolute;	
+	display:block;	 
+	border: 3px solid #000000;
+		
+}
+
+.click:hover {
+	background-color: #808080 ; 
+}
+
+#click_Connect {
+	height: 19px;	
+	bottom: 238px;
+	right: 0;
+	padding: 0px 34px;		
+}
+
+#click_Stop {
+	bottom: 62px;
+	right: 0;
+	padding: 0px 13px;
+	text-align: center;
+}
+
+.Entry {
+	position: absolute;
+	width: 330px;
+	bottom: 6em;
+	right: 0;
+}
+
+.Entry_input {
+	margin-top: 14px;	
+	float: right;
+}
+
+.Point {
+	margin: 3px 3px 0 0;	
+	font-weight: 600;
+	float: left;
+}
+
+.footer {
+	position: absolute;
+	bottom: 0;	
+	min-height: 3.2em;
+	width: 100%;
+	border-top: 3px solid #000000;
+}
+
+.footer p {
+	float: right;
+}
+
+.name {
+	text-decoration: underline;
+}
+
+.role {
+	font-size: 12px;
+}

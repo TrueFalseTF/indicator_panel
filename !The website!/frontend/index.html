@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Панель индикатора</title>
+	<link rel="stylesheet" type="text/css" href="styl.css">
+</head>
+<body>
+<div class="graphics">
+	<div class="Graphics" id="Graphics_left">
+		<div class="axis_Y">
+			<img src="axis_Y_Left.jpg">
+		</div>
+
+		<canvas class="graphics_field" id="graphics_1" width="400" height="300"></canvas>
+
+		<div class="axis_X">
+			<img src="axis_X_Left.jpg">
+		</div>
+	</div>
+
+	<div class="Graphics" id="Graphics_right">
+		<div class="axis_Y">
+			<img src="axis_Y_Right.jpg">
+		</div>
+
+		<canvas class="graphics_field" id="graphics_2" width="400" height="300"></canvas>
+
+		<div class="axis_X">
+			<img src="axis_X_Right.jpg">
+		</div>
+	</div>
+</div>
+
+<div class="legend">	
+	<p><span>t</span> - время, c</p>	
+	
+	<p><span>P</span> - мощность, Вт</p>		
+	
+	<p><span>n</span> - скорость, об/мин</p>
+</div>
+<a class="click" id="click_Connect" onclick="determination(); Revision();">Подключится</a>
+<a class="click" id="click_Stop" onclick="stop_reading();">Остановить чтение</a>
+<br>
+<div class="Entry">
+	<div class="Entry_input">
+		<a class="Point">URL: </a>
+		<input type="text" id="URL">
+	</div>
+
+	<div class="Entry_input">
+		<a class="Point">Serial port name: </a>
+		<input type="text" id="Serial_Port_Name">
+	</div>
+
+	<div class="Entry_input">
+		<a class="Point">Serial port speed: </a>
+		<input type="text" id="Serial_Port_Speed">
+	</div>
+	
+	<div class="Entry_input">
+		<a class="Point">Timeout: </a>
+		<input type="text" id="timeout">
+	</div>		
+</div> 
+
+<div class="footer">
+	<p>Производство: <span class="name">Скутов А</span> (<span class="role">топ-менеджмент, разработка аппаратного программного обеспечения</span>), <span class="name">Чёпоров Д</span> (<span class="role">разработка Web-интерфейса и программного обеспечения</span>).</p>
+</div>
+<script type="text/javascript" src="smoothie.js"></script>
+<script type="text/javascript" src="index.js"></script>
+</body>
+</html>
