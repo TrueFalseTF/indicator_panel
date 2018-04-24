@@ -68,6 +68,10 @@ function stop_reading() {
 		source = 0;
 		console.log("EventSource деактивирован.");
 	}
+
+	if(document.getElementById("URL").value != "") {
+		URL = "http://" + document.getElementById("URL").value + "/";
+	}
 		
 	if(URL !== 0) {
 		var xhr = getXmlHttp();
