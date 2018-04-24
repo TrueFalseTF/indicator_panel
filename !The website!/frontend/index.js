@@ -26,40 +26,45 @@ var URL = 0;
 var type_indicator_values = 0;
 var source = 0;
 
+var Entry_order = true;
+
 // (stop == 0) - до первого нажатия кнопки подключения
 // (stop == 1) - после первого удачного подключения к потоку
 // (stop == 2) - при попытки переподключения пользователем по введённому URL
 // при (stop == 2) - (stop = 0) и остановка события, если URL и подключение действует событие вновь запустится.
-function Revision() {				
-	source = new EventSource(URL);
-	console.log("Созданный объект EventSource, пытается установить соединение.");
-	source.onopen = function(e) { console.log("Соединение EventSource открыто.");
-		source.onmessage = function(e) { console.log("Принято сообщение. EventSource.");
-			//обработчик типа значений данных
-			if(e.data == "T") {
-				type_indicator_values = e.data;
-			} else if(e.data == "S") {
-				type_indicator_values = e.data;
-			}
-
-			//обработчик данных
-			if(e.data != "Ok!") {
-				if(type_indicator_values == "T" && e.date != "T" && e.date != "S") {
-					value1 = e.data;		    		    		
-				} else if(type_indicator_values == "S" && e.date != "T" && e.date != "S") {
-					value2 = e.data;	    			    		
+function Revision() {
+	if( Entry_order === true) {				
+		source = new EventSource(URL);
+		console.log("Созданный объект EventSource, пытается установить соединение.");
+		source.onopen = function(e) { console.log("Соединение EventSource открыто.");
+			source.onmessage = function(e) { console.log("Принято сообщение. EventSource.");
+				//обработчик типа значений данных
+				if(e.data == "T") {
+					type_indicator_values = e.data;
+				} else if(e.data == "S") {
+					type_indicator_values = e.data;
 				}
-			}				
+
+				//обработчик данных
+				if(e.data != "Ok!") {
+					if(type_indicator_values == "T" && e.date != "T" && e.date != "S") {
+						value1 = e.data;		    		    		
+					} else if(type_indicator_values == "S" && e.date != "T" && e.date != "S") {
+						value2 = e.data;	    			    		
+					}
+				}				
+			};
 		};
-	};
-			
-	source.onerror = function(e) {
-		if (this.readyState == source.CONNECTING) {
-			console.log("Соединение EventSource порвалось, пересоединяемся...");
-		} else {
-			console.log("Ошибка EventSource, состояние: " + this.readyState);
-		}
-	};
+				
+		source.onerror = function(e) {
+			if (this.readyState == source.CONNECTING) {
+				console.log("Соединение EventSource порвалось, пересоединяемся...");
+			} else {
+				console.log("Ошибка EventSource, состояние: " + this.readyState);
+			}
+		};
+		Entry_order = false;
+	}
 }
 
 function stop_reading() {
@@ -92,6 +97,8 @@ function stop_reading() {
 			}
 			timerId = setTimeout(check_execution, 10);
 		}, 10);
+
+		Entry_order === true;
 		
 		/*
 		xhr.onreadystatechange = function() {
@@ -107,30 +114,36 @@ function stop_reading() {
 	
 
 function determination() {
+
   	URL = "http://" + document.getElementById("URL").value + "/";
   	var Serial_Port_Name = document.getElementById("Serial_Port_Name").value;
   	var Serial_Port_Speed = document.getElementById("Serial_Port_Speed").value;
   	var timeout = document.getElementById("timeout").value;
 
 	var get_request = URL + "determination?Serial_Port_Name=" + escape(Serial_Port_Name) + "&Serial_Port_Speed=" + escape(Serial_Port_Speed) + "&timeout=" + escape(timeout) + "&r=" + Math.random();
+	
+	if (Entry_order === true) {
+		var xhr = getXmlHttp();
+		xhr.open("GET", get_request, true);
 		
-  	var xhr = getXmlHttp();
-	xhr.open("GET", get_request, true);
-	  
-	xhr.send(null);
-	console.log("determination().Открыт ассинхронный XMLHttpRequest запрос. ");		
-		
-	var timerId = setTimeout(function check_execution() {
-		if (xhr.readyState == 4) {	console.log("determination().Состояние XMLHttpRequest запроса - 4. ");				
-			if(xhr.status == 200) {	console.log("determination().Получен статус соединения 200. ");
-				xhr.abort();
-				xhr = 0;
-				console.log("determination().XMLHttpRequest запрос закрыт следующая команда - return. ");
-				return;					
+		xhr.send(null);
+		console.log("determination().Открыт ассинхронный XMLHttpRequest запрос. ");		
+			
+		var timerId = setTimeout(function check_execution() {
+			if (xhr.readyState == 4) {	console.log("determination().Состояние XMLHttpRequest запроса - 4. ");				
+				if(xhr.status == 200) {	console.log("determination().Получен статус соединения 200. ");
+					xhr.abort();
+					xhr = 0;
+					console.log("determination().XMLHttpRequest запрос закрыт следующая команда - return. ");
+					return;					
+				}
 			}
-		}
-		timerId = setTimeout(check_execution, 10);
-	}, 10);
+			timerId = setTimeout(check_execution, 10);
+		}, 10);
+		Entry_order === false;
+	}
+
+
 			
 	
 	/*
