@@ -98,7 +98,7 @@ function stop_reading() {
 			timerId = setTimeout(check_execution, 10);
 		}, 10);
 
-		Entry_order === true;
+		Entry_order = true;
 		
 		/*
 		xhr.onreadystatechange = function() {
