@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "backend",
   "main": "Index.js",
+  "engines": {
+    "node": "~8.11.1",
+    "npm" : "~5.6.0" 
+  },
   "dependencies": {
     "express": "~4.16.3",
     "parser-readline": "~1.0.2",
